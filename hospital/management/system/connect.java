@@ -12,7 +12,7 @@ public class connect {
 
     public connect() {
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital_management_system", "root", "sHj@6378#jw");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/smart_health_management_system", "root", "sHj@6378#jw");
             statement = connection.createStatement();
         }catch (Exception e){
             e.printStackTrace();

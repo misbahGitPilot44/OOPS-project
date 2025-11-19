@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 
 public class login extends JFrame implements ActionListener {
 
@@ -62,15 +63,39 @@ public class login extends JFrame implements ActionListener {
         setLocation(400, 270);
         setVisible(true);
 
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == b1){
+            try{
+
+                connect c = new connect();
+                String user = textField.getText();
+                String Pass = jPasswordField.getText();
+
+                String q = "select * from login where ID = '"+user+"' and PW = '"+Pass+"'";
+                ResultSet resultSet = c.statement.executeQuery(q);
+
+                if(resultSet.next()){
+                    new Reception();
+                    setVisible(false);
+
+                }else{
+                    JOptionPane.showMessageDialog(null, "Invalid");
+                }
+
+            }catch (Exception E){
+                E.printStackTrace();
+            }
+        }else {
+            System.exit(10);
+        }
     }
     public static void main(String[] args) {
         new login();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-        
-
-    }
 }
